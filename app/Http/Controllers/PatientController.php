@@ -29,6 +29,7 @@ class PatientController extends Controller
 
     public function docspatients(){
         $visits = Visit::where('user_id','=',Auth::user()->id)->get();
+        $visits = $visits->groupBy('user_id');
         //dd($visits);
         return view('patients.docspatients')->withVisits($visits);
     }
