@@ -8,6 +8,9 @@
 @section('subpageheading')
 	View/Search for Patients with appointments today
 @stop
+@section('refresh')
+  <meta http-equiv="Refresh" content="300">
+@endsection
 @section('content')
 	{{-- {{$patients}} --}}
 	<div class="row">

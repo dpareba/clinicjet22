@@ -230,8 +230,8 @@ Add Consultation for Patient Visit
 									<div class="form-group {{ $errors->has('pathology')?'has-error':''}}">
 										<label class="control-label" for="pathology">Recommended Clinical Follow up</label>
 										<div class="pull-right box-tools">
-											<a type="button" id="addpath" class="btn btn btn-sm" style="color: gray;" data-toggle="modal" data-target="#myPathModal">
-												<i class="fa fa-plus"></i></a>
+											<a type="button" id="addpath" class="btn btn-success btn-xs"  data-toggle="modal" data-target="#myPathModal">
+												Add Investigation</a>
 											</div>
 											<select name="pathology[]" id="pathology" class="js-example-basic-multiple  form-control" multiple="multiple" >
 											{{-- @foreach ($pathologies as $pathology)
@@ -303,7 +303,11 @@ Add Consultation for Patient Visit
 							</div>
 							{{-- .row --}}
 
-							
+							<div class="row">
+								<div class="col-md-12">
+									
+								</div>
+							</div>
 							
 							
 

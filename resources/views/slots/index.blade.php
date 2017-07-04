@@ -8,6 +8,7 @@ Today's Tokens
 @section('subpageheading')
 View/Search Patients with Token Numbers
 @stop
+
 @section('content')
 <div class="row">
 	<div class="col-md-12 col-xs-12">
