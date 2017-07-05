@@ -248,9 +248,11 @@ Add Consultation for Patient Visit
 							<div class="bg-primary">
 								<hr style="height: 1px;">
 							</div>
+
+
 							
 
-							@if ($patient->gender == "FEMALE")
+							{{-- @if ($patient->gender == "FEMALE")
 							<div class="row">
 								<div class="col-md-4 col-xs-12">
 									<div class="form-group {{ $errors->has('menses')?'has-error':''}}">
@@ -265,10 +267,10 @@ Add Consultation for Patient Visit
 							</div>
 							<hr>
 							@endif
-
+ --}}
 							
 							<div class="row">
-								<div class="col-md-6 col-xs-12 ">
+								<div class="col-md-8 col-xs-12 ">
 									<div class="form-group {{ $errors->has('systolic') || $errors->has('diastolic')?'has-error':''}}">
 										<div style="text-align: center;">
 											<label for="" >Blood Pressure (Systolic/Diastolic) in mmHg</label>
@@ -289,7 +291,7 @@ Add Consultation for Patient Visit
 										@endif
 									</div>
 								</div>
-								<div class="col-md-6 col-xs-12">
+								<div class="col-md-4 col-xs-12">
 									<div class="form-group {{ $errors->has('randombs')?'has-error':''}}">
 										<div style="text-align: center;">
 											<label class="control-label" for="randombs">Random Blood Sugar</label>
@@ -301,47 +303,6 @@ Add Consultation for Patient Visit
 								</div>
 								
 							</div>
-							{{-- .row --}}
-
-							<div class="row">
-								<div class="col-md-12">
-									
-								</div>
-							</div>
-							
-							
-
-							<div class="row">
-								<div class="col-md-6 col-xs-12">
-									{!! $bpchart->render() !!}
-								</div>
-								<div class="col-md-6 col-xs-12">
-									{!! $randombschart->render() !!}
-								</div>
-							</div>
-							<hr>
-
-							{{-- <div class="row">
-								<div class="col-md-12">
-									<div class="nav-tabs-custom">
-										<!-- Tabs within a box -->
-										<ul class="nav nav-tabs ">
-											<li class="header" style="color: green;"></li>
-											<li class="active"><a href="#bp" data-toggle="tab">Blood Pressure</a></li>
-											<li><a href="#randombs" data-toggle="tab">Random1 Blood Sugar</a></li>
-											
-										</ul>
-										<div class="tab-content no-padding">
-											<!-- Morris chart - Sales -->
-											<div class="chart tab-pane active" id="bp" style="position: relative; height: 300px;">{!! $bpchart->render() !!}</div>
-											<div class="chart tab-pane" id="randombs" style="position: relative; height: 300px;">dsg</div>
-											
-										</div>
-									</div>
-									
-								</div>
-								
-							</div> --}}
 							{{-- .row --}}
 
 							<div class="row">
@@ -380,19 +341,6 @@ Add Consultation for Patient Visit
 
 							<div class="row">
 								<div class="col-md-4 col-xs-12">
-									{!! $pulsechart->render() !!}
-								</div>
-								<div class="col-md-4 col-xs-12">
-									{!! $respratechart->render() !!}
-								</div>
-								<div class="col-md-4 col-xs-12">
-									{!! $spochart->render() !!}
-								</div>
-							</div>
-							<hr>
-							
-							<div class="row">
-								<div class="col-md-4 col-xs-12">
 									<div class="form-group {{ $errors->has('weight')?'has-error':''}}">
 										<div style="text-align: center;">
 											<label class="control-label" for="weight">Weight (in kgs)</label>
@@ -423,6 +371,98 @@ Add Consultation for Patient Visit
 									</div>
 								</div>
 							</div>
+							{{-- .row --}}
+
+							<div class="row">
+								<div class="col-md-12">
+									<div class="nav-tabs-custom bg-aqua">
+										<ul class="nav nav-tabs">
+											<li class="active"><a href="#bpchart" data-toggle="tab">Blood Pressure</a></li>
+											<li><a href="#randombschart" data-toggle="tab">Random Blood Sugar</a></li>
+											<li><a href="#pulsechart" data-toggle="tab">Pulse</a></li>
+											<li><a href="#respratechart" data-toggle="tab">Respiratory Rate</a></li>
+											<li><a href="#spochart" data-toggle="tab">SPO2</a></li>
+											<li><a href="#weightchart" data-toggle="tab">Weight</a></li>
+											<li><a href="#bmichart" data-toggle="tab">BMI</a></li>
+										</ul>
+										<div class="tab-content">
+											<div class="active tab-pane" id="bpchart">
+												{!! $bpchart->render() !!}
+											</div>
+											<div class=" tab-pane" id="randombschart">
+												{!! $randombschart->render() !!}
+											</div>
+											<div class=" tab-pane" id="pulsechart">
+												{!! $pulsechart->render() !!}
+											</div>
+											<div class=" tab-pane" id="respratechart">
+												{!! $respratechart->render() !!}
+											</div>
+											<div class=" tab-pane" id="spochart">
+												{!! $spochart->render() !!}
+											</div>
+											<div class=" tab-pane" id="weightchart">
+												{!! $weightchart->render() !!}
+											</div>
+											<div class=" tab-pane" id="bmichart">
+												{!! $bmichart->render() !!}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+							
+
+						{{-- 	<div class="row">
+								<div class="col-md-6 col-xs-12">
+									{!! $bpchart->render() !!}
+								</div>
+								<div class="col-md-6 col-xs-12">
+									{!! $randombschart->render() !!}
+								</div>
+							</div>
+							<hr> --}}
+
+							{{-- <div class="row">
+								<div class="col-md-12">
+									<div class="nav-tabs-custom">
+										<!-- Tabs within a box -->
+										<ul class="nav nav-tabs ">
+											<li class="header" style="color: green;"></li>
+											<li class="active"><a href="#bp" data-toggle="tab">Blood Pressure</a></li>
+											<li><a href="#randombs" data-toggle="tab">Random1 Blood Sugar</a></li>
+											
+										</ul>
+										<div class="tab-content no-padding">
+											<!-- Morris chart - Sales -->
+											<div class="chart tab-pane active" id="bp" style="position: relative; height: 300px;">{!! $bpchart->render() !!}</div>
+											<div class="chart tab-pane" id="randombs" style="position: relative; height: 300px;">dsg</div>
+											
+										</div>
+									</div>
+									
+								</div>
+								
+							</div> --}}
+							{{-- .row --}}
+
+							
+
+						{{-- 	<div class="row">
+								<div class="col-md-4 col-xs-12">
+									{!! $pulsechart->render() !!}
+								</div>
+								<div class="col-md-4 col-xs-12">
+									{!! $respratechart->render() !!}
+								</div>
+								<div class="col-md-4 col-xs-12">
+									{!! $spochart->render() !!}
+								</div>
+							</div>
+							<hr>
+							
+							
 
 							<div class="row">
 								<div class="col-md-4 col-xs-12">
@@ -435,7 +475,7 @@ Add Consultation for Patient Visit
 									{!! $bmichart->render() !!}
 								</div>
 							</div>
-							<hr>
+							<hr> --}}
 
 							<div class="bg-primary">
 								<hr style="height: 1px;">
@@ -466,7 +506,7 @@ Add Consultation for Patient Visit
 
 							{{-- =====================================TESTING================================================= --}}
 
-
+							
 							<div class="row">
 								<div class="col-md-12">
 									<!-- small box -->
@@ -658,6 +698,7 @@ Add Consultation for Patient Visit
 
 							</div>
 							<!-- /.box-body -->
+							
 
 							<div class="box-footer clearfix">
 								

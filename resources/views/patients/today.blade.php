@@ -31,7 +31,7 @@
                   <th>Email</th>
                   <th>Patient Code</th>
                    <th>Registered On</th>
-                   
+                   {{-- <th>Status</th> --}}
                 </tr>
                 </thead>
                 <tbody>
@@ -55,7 +55,7 @@
                     <td>{{$slot->patient->email}}</td>
                     <td>{{$slot->patient->patientcode}}</td>
                      <td>{{date('M j, Y',strtotime($slot->patient->created_at))}}</td>
-
+                   {{--  <td><span class="label label-primary">{{$slot->slotstatus->slotstatus}}</span></td> --}}
                   </tr>
                 @endforeach
                 

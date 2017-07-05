@@ -20,4 +20,8 @@ class Slot extends Model
     public function clinic(){
     	return $this->belongsTo('App\Clinic');
     }
+
+    public function slotstatus(){
+      return $this->belongsTo('App\Slotstatus');
+    }
 }

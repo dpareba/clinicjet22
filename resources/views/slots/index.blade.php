@@ -47,17 +47,17 @@ View/Search Patients with Token Numbers
                     <th>Patient Name</th>
                     <th>Primary Phone</th>
                     <th>Patient Code</th>
-                    
+                   {{--  <th>Status</th> --}}
                   </tr>
                   </thead>
                  <tbody>
 						@endif
             <tr>
-            <td><span class="label label-success">{{$s->token}}</td>
+            <td><span class="label label-success">{{$s->token}}</span></td>
             <td>{{$s->patient->name}} {{$s->patient->midname}} {{$s->patient->surname}}</td>
             <td>{{$s->patient->phoneprimary}}</td>
             <td>{{$s->patient->patientcode}}</td>
-            
+            {{-- <td><span class="label label-primary">{{$s->slotstatus->slotstatus}}</span></td> --}}
             </tr>
 						<?php $count+=1; ?>
 					@endforeach

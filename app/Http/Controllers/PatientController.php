@@ -29,7 +29,7 @@ class PatientController extends Controller
 
     public function docspatients(){
         $visits = Visit::where('user_id','=',Auth::user()->id)->get();
-        $visits = $visits->groupBy('user_id');
+        $visits = $visits->groupBy('patient_id');
         //dd($visits);
         return view('patients.docspatients')->withVisits($visits);
     }
@@ -50,7 +50,7 @@ class PatientController extends Controller
             return view('patients.index')->withPatients($patients);
         }else{
             return redirect()->route('slots.appointmentstoday');
-           
+
         }
         
         
@@ -79,78 +79,78 @@ class PatientController extends Controller
         //dd($request);
         if ($request->cbage == "on") {
             $this->validate($request,[
-            'approxage'=>'required',
-            'name'=>'required|max:255',
+                'approxage'=>'required',
+                'name'=>'required|max:255',
             //'midname'=>'required|max:255',
-            'midname'=>'max:255',
-            'surname'=>'required|max:255',
-            'dob'=>'date_format:d/m/Y|before:tomorrow',
-            'gender'=>'required|max:6',
-            'bloodgroup'=>'required|max:10',
-            'allergies'=>'required',
-            'address'=>'required',
-            'patientstate'=>'required',
-            'patientcity'=>'required',
-            'patientpin'=>'required|min:6|max:6',
+                'midname'=>'max:255',
+                'surname'=>'required|max:255',
+                'dob'=>'date_format:d/m/Y|before:tomorrow',
+                'gender'=>'required|max:6',
+                'bloodgroup'=>'required|max:10',
+                'allergies'=>'required',
+                'address'=>'required',
+                'patientstate'=>'required',
+                'patientcity'=>'required',
+                'patientpin'=>'required|min:6|max:6',
             // 'phoneprimary'=>'required|digits:10|unique:patients,phoneprimary',
             // 'phonealternate'=>'required|digits:10|unique:patients,phonealternate',
-            'idproof' => 'digits:12|unique:patients,idproof',
-            'phoneprimary'=>'required|digits:10|unique:patients,phoneprimary',
-            'phonealternate'=>'required|digits:10',
-            'email'=>'email'
-            ],[
-            'approxage.required'=>'Approximate age of patient not entered',
-            'name.required'=>'First Name is required to be entered',
+                'idproof' => 'digits:12|unique:patients,idproof',
+                'phoneprimary'=>'required|digits:10|unique:patients,phoneprimary',
+                'phonealternate'=>'required|digits:10',
+                'email'=>'email'
+                ],[
+                'approxage.required'=>'Approximate age of patient not entered',
+                'name.required'=>'First Name is required to be entered',
             //'midname.required'=>'Middle Name is required to be entered',
-            'surname.required'=>'Surname is required to be entered',
-            'name.alpha'=>'The Name may only contain alphabets',
-            'allergies.required'=>'Please enter know allergies.Enter Not known otherwise.',
-            'phoneprimary.required'=>'Primary Phone Number is compulsory',
-            'phoneprimary.digits'=>'Phone number needs to contain 10 digits',
-            'phoneprimary.unique'=>'Patient with this phone number is already registered',
-            'phonealternate.required'=>'Emergency Phone Number is compulsory',
-            'phonealternate.digits'=>'Phone number needs to contain 10 digits',
-            'idproof.digits'=>'Aadhar number needs to contain 12 digits',
+                'surname.required'=>'Surname is required to be entered',
+                'name.alpha'=>'The Name may only contain alphabets',
+                'allergies.required'=>'Please enter know allergies.Enter Not known otherwise.',
+                'phoneprimary.required'=>'Primary Phone Number is compulsory',
+                'phoneprimary.digits'=>'Phone number needs to contain 10 digits',
+                'phoneprimary.unique'=>'Patient with this phone number is already registered',
+                'phonealternate.required'=>'Emergency Phone Number is compulsory',
+                'phonealternate.digits'=>'Phone number needs to contain 10 digits',
+                'idproof.digits'=>'Aadhar number needs to contain 12 digits',
             // 'phonealternate.unique'=>'Patient with this phone number is already registered',
-            'dob.date'=>'The Date of Birth should be in mm/dd/yyyy format.',
-            'dob.before'=>'The Date of Birth cannot be later than the date today.',
-            'idproof.digits'=>'Invalid Aadhar Number',
-            'idproof.unique'=>'Aadhar number already exists'
-            ]);
+                'dob.date'=>'The Date of Birth should be in mm/dd/yyyy format.',
+                'dob.before'=>'The Date of Birth cannot be later than the date today.',
+                'idproof.digits'=>'Invalid Aadhar Number',
+                'idproof.unique'=>'Aadhar number already exists'
+                ]);
         }else{
-        $this->validate($request,[
-            'name'=>'required|max:255',
-            'midname'=>'max:255',
-            'surname'=>'required|max:255',
-            'dob'=>'date_format:d/m/Y|before:tomorrow',
-            'gender'=>'required|max:6',
-            'bloodgroup'=>'required|max:10',
-            'allergies'=>'required',
-            'address'=>'required',
-            'patientstate'=>'required',
-            'patientcity'=>'required',
-            'patientpin'=>'required|min:6|max:6',
+            $this->validate($request,[
+                'name'=>'required|max:255',
+                'midname'=>'max:255',
+                'surname'=>'required|max:255',
+                'dob'=>'date_format:d/m/Y|before:tomorrow',
+                'gender'=>'required|max:6',
+                'bloodgroup'=>'required|max:10',
+                'allergies'=>'required',
+                'address'=>'required',
+                'patientstate'=>'required',
+                'patientcity'=>'required',
+                'patientpin'=>'required|min:6|max:6',
             // 'phoneprimary'=>'required|digits:10|unique:patients,phoneprimary',
             // 'phonealternate'=>'required|digits:10|unique:patients,phonealternate',
-            'idproof' => 'digits:12|unique:patients,idproof',
-            'phoneprimary'=>'required|digits:10|unique:patients,phoneprimary',
-            'phonealternate'=>'required|digits:10',
-            'email'=>'email'
-            ],[
-            'name.required'=>'First Name is required to be entered',
+                'idproof' => 'digits:12|unique:patients,idproof',
+                'phoneprimary'=>'required|digits:10|unique:patients,phoneprimary',
+                'phonealternate'=>'required|digits:10',
+                'email'=>'email'
+                ],[
+                'name.required'=>'First Name is required to be entered',
             //'midname.required'=>'Middle Name is required to be entered',
-            'surname.required'=>'Surname is required to be entered',
-            'name.alpha'=>'The Name may only contain alphabets',
-            'allergies.required'=>'Please enter know allergies.Enter Not known otherwise.',
-            'phoneprimary.required'=>'Primary Phone Number is compulsory',
-            'phoneprimary.digits'=>'Phone number needs to contain 10 digits',
-            'phoneprimary.unique'=>'Patient with this phone number is already registered',
-            'dob.date'=>'The Date of Birth should be in mm/dd/yyyy format.',
-            'dob.before'=>'The Date of Birth cannot be later than the date today.',
-            'idproof.digits'=>'Invalid Aadhar Number',
-            'idproof.unique'=>'Aadhar number already exists'
-            ]);
-            }
+                'surname.required'=>'Surname is required to be entered',
+                'name.alpha'=>'The Name may only contain alphabets',
+                'allergies.required'=>'Please enter know allergies.Enter Not known otherwise.',
+                'phoneprimary.required'=>'Primary Phone Number is compulsory',
+                'phoneprimary.digits'=>'Phone number needs to contain 10 digits',
+                'phoneprimary.unique'=>'Patient with this phone number is already registered',
+                'dob.date'=>'The Date of Birth should be in mm/dd/yyyy format.',
+                'dob.before'=>'The Date of Birth cannot be later than the date today.',
+                'idproof.digits'=>'Invalid Aadhar Number',
+                'idproof.unique'=>'Aadhar number already exists'
+                ]);
+        }
 
         //$cliniccode = Session::get('cliniccode');
         $clinic = Clinic::where(['cliniccode'=>Session::get('cliniccode')])->first();
@@ -234,81 +234,81 @@ class PatientController extends Controller
         $bmidata = Visit::where('patient_id','=',$patient->id)->where('bmi','!=','')->get();
 
         $bpchart = Charts::multi('areaspline','highcharts')
-                        ->height(300)
+        ->height(300)
                         //->colors(['#58355E','#7AE7C7'])
                         //->colors(['#6E0D25','#FFFFB3'])
                         //->colors(['#7EB19F','#0C8282'])
-                        ->colors(['#72DDF7','#2F4858'])
-                        ->title('Blood Pressure (mmHg)')
-                        ->elementLabel('mmHg')
-                        ->labels($bpdata->pluck('created_at'))
-                        ->dataset('Systolic',$bpdata->pluck('systolic'))
-                        ->dataset('Diastolic',$bpdata->pluck('diastolic'))
-                        ->responsive(false)
-                        ;
+        ->colors(['#72DDF7','#2F4858'])
+        ->title('Blood Pressure (mmHg)')
+        ->elementLabel('mmHg')
+        ->labels($bpdata->pluck('created_at'))
+        ->dataset('Systolic',$bpdata->pluck('systolic'))
+        ->dataset('Diastolic',$bpdata->pluck('diastolic'))
+        ->responsive(false)
+        ;
 
         $randombschart = Charts::multi('line','highcharts')
-                        ->height(300)
-                        ->colors(['#2F4858'])
-                        ->title('Random Blood Sugar (mg/dl)')
-                        ->elementLabel('mg/dl')
-                        ->labels($randombsdata->pluck('created_at'))
-                        ->dataset('Random Blood Sugar',$randombsdata->pluck('randombs'))
-                        ->responsive(false);
+        ->height(300)
+        ->colors(['#2F4858'])
+        ->title('Random Blood Sugar (mg/dl)')
+        ->elementLabel('mg/dl')
+        ->labels($randombsdata->pluck('created_at'))
+        ->dataset('Random Blood Sugar',$randombsdata->pluck('randombs'))
+        ->responsive(false);
 
         $pulsechart = Charts::multi('line','highcharts')
-                        ->height(300)
-                        ->colors(['#2F4858'])
-                        ->title('Pulse (beats per minute)')
-                        ->elementLabel('beats per minute')
-                        ->labels($pulsedata->pluck('created_at'))
-                        ->dataset('Pulse',$pulsedata->pluck('pulse'))
-                        ->responsive(false);
+        ->height(300)
+        ->colors(['#2F4858'])
+        ->title('Pulse (beats per minute)')
+        ->elementLabel('beats per minute')
+        ->labels($pulsedata->pluck('created_at'))
+        ->dataset('Pulse',$pulsedata->pluck('pulse'))
+        ->responsive(false);
 
         $respratechart = Charts::multi('area','highcharts')
-                        ->height(300)
-                        ->colors(['#2F4858'])
-                        ->title('Respiratory Rate (breaths per minute)')
-                        ->elementLabel('breaths per minute')
-                        ->labels($respratedata->pluck('created_at'))
-                        ->dataset('Respiratory Rate',$respratedata->pluck('resprate'))
-                        ->responsive(false);
+        ->height(300)
+        ->colors(['#2F4858'])
+        ->title('Respiratory Rate (breaths per minute)')
+        ->elementLabel('breaths per minute')
+        ->labels($respratedata->pluck('created_at'))
+        ->dataset('Respiratory Rate',$respratedata->pluck('resprate'))
+        ->responsive(false);
 
         $spochart = Charts::multi('bar','highcharts')
-                        ->height(300)
-                        ->colors(['#2F4858'])
-                        ->title('SPO2 (%)')
-                        ->elementLabel('%')
-                        ->labels($spodata->pluck('created_at'))
-                        ->dataset('SPO2',$spodata->pluck('spo'))
-                        ->responsive(false);
+        ->height(300)
+        ->colors(['#2F4858'])
+        ->title('SPO2 (%)')
+        ->elementLabel('%')
+        ->labels($spodata->pluck('created_at'))
+        ->dataset('SPO2',$spodata->pluck('spo'))
+        ->responsive(false);
 
-         $weightchart = Charts::multi('areaspline','highcharts')
-                        ->height(300)
-                        ->colors(['#2F4858'])
-                        ->title('Weight (in kgs)')
-                        ->elementLabel('kgs')
-                        ->labels($weightdata->pluck('created_at'))
-                        ->dataset('Weight',$weightdata->pluck('weight'))
-                        ->responsive(false);
+        $weightchart = Charts::multi('areaspline','highcharts')
+        ->height(300)
+        ->colors(['#2F4858'])
+        ->title('Weight (in kgs)')
+        ->elementLabel('kgs')
+        ->labels($weightdata->pluck('created_at'))
+        ->dataset('Weight',$weightdata->pluck('weight'))
+        ->responsive(false);
 
-         $heightchart = Charts::multi('bar','highcharts')
-                        ->height(300)
-                        ->colors(['#2F4858'])
-                        ->title('height (in cms)')
-                        ->elementLabel('cms')
-                        ->labels($heightdata->pluck('created_at'))
-                        ->dataset('Height',$heightdata->pluck('height'))
-                        ->responsive(false);
+        $heightchart = Charts::multi('bar','highcharts')
+        ->height(300)
+        ->colors(['#2F4858'])
+        ->title('height (in cms)')
+        ->elementLabel('cms')
+        ->labels($heightdata->pluck('created_at'))
+        ->dataset('Height',$heightdata->pluck('height'))
+        ->responsive(false);
 
         $bmichart = Charts::multi('line','highcharts')
-                        ->height(300)
-                        ->colors(['#2F4858'])
-                        ->title('BMI')
-                        ->elementLabel('BMI')
-                        ->labels($bmidata->pluck('created_at'))
-                        ->dataset('BMI',$bmidata->pluck('bmi'))
-                        ->responsive(false);
+        ->height(300)
+        ->colors(['#2F4858'])
+        ->title('BMI')
+        ->elementLabel('BMI')
+        ->labels($bmidata->pluck('created_at'))
+        ->dataset('BMI',$bmidata->pluck('bmi'))
+        ->responsive(false);
 
         return view('patients.createconsult')->withPatient($patient)->withUser($user)->withPathologies($pathologies)->withBpchart($bpchart)->withRandombschart($randombschart)->withPulsechart($pulsechart)->withRespratechart($respratechart)->withSpochart($spochart)->withWeightchart($weightchart)->withHeightchart($heightchart)->withBmichart($bmichart)->withTemplates($templates);
     }
@@ -321,7 +321,14 @@ class PatientController extends Controller
     public function show($id)
     {
         $patient = Patient::find($id);
+        
+        // $dt = Carbon::now();
+        // $clinicid = Clinic::where(['cliniccode'=>Session::get('cliniccode')])->first()->id;
+        // $slot = Slot::where('patient_id','=',$id)->where('clinic_id',$clinicid)->where('user_id','=',Auth::user()->id)->where('slotdate','=',$dt->toDateString())->first();
+        
         //dd($patient);
+        // $slot->slotstatus_id = 2;
+        // $slot->save();
         return view('patients.show')->withPatient($patient);
     }
 
@@ -346,7 +353,7 @@ class PatientController extends Controller
      */
     public function update(Request $request, $id)
     {
-       $this->validate($request,[
+     $this->validate($request,[
         'name'=>'required|max:255',
         'midname'=>'required|max:255',
         'surname'=>'required|max:255',
@@ -360,28 +367,28 @@ class PatientController extends Controller
         'name.alpha'=>'The Name may only contain alphabets'
         ]);
 
-       $patient = Patient::find($id);
-       $patient->name = $request->name;
-       $patient->midname = $request->midname;
-       $patient->surname = $request->surname;
-       $patient->gender = $request->gender;
-       $patient->phoneprimary = $request->phoneprimary;
-       $patient->phonealternate = $request->phonealternate;
-       $patient->email = $request->email;
-       $patient->address = $request->address;
-       $patient->allergies = $request->allergies;
-       $patient->bloodgroup = $request->bloodgroup;
-       $patient->idproof = $request->idproof;
-       $patient->save();
+     $patient = Patient::find($id);
+     $patient->name = $request->name;
+     $patient->midname = $request->midname;
+     $patient->surname = $request->surname;
+     $patient->gender = $request->gender;
+     $patient->phoneprimary = $request->phoneprimary;
+     $patient->phonealternate = $request->phonealternate;
+     $patient->email = $request->email;
+     $patient->address = $request->address;
+     $patient->allergies = $request->allergies;
+     $patient->bloodgroup = $request->bloodgroup;
+     $patient->idproof = $request->idproof;
+     $patient->save();
 
-       Session::flash('message','Success!!');
-       Session::flash('text','Patient Details updated successfully!!');
-       Session::flash('type','success');
-       Session::flash('timer','5000');
+     Session::flash('message','Success!!');
+     Session::flash('text','Patient Details updated successfully!!');
+     Session::flash('type','success');
+     Session::flash('timer','5000');
 
-       return redirect()->route('patients.show',$patient->id);
+     return redirect()->route('patients.show',$patient->id);
 
-   }
+ }
 
     /**
      * Remove the specified resource from storage.

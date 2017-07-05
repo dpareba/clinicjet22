@@ -15,6 +15,7 @@ use Validator;
 use PDF;
 use Carbon\Carbon;
 use Illuminate\Support\Str; //Added
+use App\Slot;
 
 class VisitController extends Controller
 {
@@ -160,6 +161,12 @@ class VisitController extends Controller
     $visit->clinic_id = $clinic->id;
     $visit->created_by_name = Auth::user()->name;
     $visit->user_id = Auth::user()->id;
+    // $dt = Carbon::now();
+    
+    // $slot = Slot::where('patient_id','=',$request->patient_id)->where('slotdate','=',$dt->toDateString())->where('user_id','=',Auth::user()->id)->where('clinic_id','=',$clinic->id)->first();
+    //dd($slot);
+    // $slot->slotstatus_id = 3;
+    // $slot->save();
     $visit->save();
 
     if ($request->has('pathology')) {

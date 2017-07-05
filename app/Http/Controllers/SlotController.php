@@ -97,6 +97,7 @@ class SlotController extends Controller
             $slot->patient_id = $request->patient_id;
 
             $slot->clinic_id = $clinicid;
+            $slot->slotstatus_id = 1;
         //dd($date->toDateString());
         //$slots = Slot::where('user_id','=',$request->user)->where('slotdate','>',$date)->where('slotdate','<',$date)->orderBy('token','DESC')->first();
             $slots = Slot::where('user_id','=',$request->user)->where('slotdate','=',$date->toDateString())->where('clinic_id','=',$clinicid)->orderBy('token','DESC')->first();
